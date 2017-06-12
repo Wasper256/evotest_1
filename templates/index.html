@@ -12,16 +12,17 @@
     <div class="col-sm-6">
       <h3>Please input new name</h3>
       <br>
-      <form action="" method="post">
+      <form action="" name="action" method="post" value="name">
         <h4>Input new name(Use only A-Z,a-z):</h4>
-        <input type="text" placeholder="Name" name="name" maxlength="32" name="first_name" pattern="[A-Za-z]{1,32}" value="{{
+        <input type="text" placeholder="Name" name="name" maxlength="32" pattern="[A-Za-z]{1,32}" value="{{
         request.form.name }}" required> <br><br>
       <input class="btn btn-default" type="submit" value="Add new name">
       </form><br>
       </div>
       <div class="col-sm-6">
         <h3>>>>>>Select lucky names<<<<</h3>
-        <input class="btn btn-default" type="submit" value="Push to get lucky names!">
+      <form action="" name="action" method="post" value="action">
+      <input class="btn btn-default" type="submit" name="lucky" value="Random!">
       </form><br>
       </div>
       <div class="col-sm-12">
