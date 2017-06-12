@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <div class="col-sm-12"><h3 class="text-center">Welcome!</h3></div>
+    <div class="col-sm-6"></div>
+    <div class="col-sm-6"><h3 class="text-center"><a href="/positions">Delete name here, if you want</a></h3></div>
+    <div class="col-sm-6">
+      <h3>Please input new name</h3>
+      <br>
+      <form action="" method="post">
+        <h4>Input new name(Use only A-Z,a-z):</h4>
+        <input type="text" placeholder="Name" name="name" maxlength="32" name="first_name" pattern="[A-Za-z]{1,32}" value="{{
+        request.form.name }}" required> <br><br>
+      <input class="btn btn-default" type="submit" value="Add new name">
+      </form><br>
+      </div>
+      <div class="col-sm-6">
+        <h3>>>>>>Select lucky names<<<<</h3>
+        <input class="btn btn-default" type="submit" value="Push to get lucky names!">
+      </form><br>
+      </div>
+      <div class="col-sm-12">
+      <h3>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      </h3>
+      </div>
+  </body>
+</html>
