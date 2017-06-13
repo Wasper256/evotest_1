@@ -1,0 +1,27 @@
+ <!DOCTYPE html>
+<html>
+<title>Vacancy list</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
+<body>
+<div class="col-sm-6"><h3 class="text-center"><a href="/">Delete name</div>
+<form action="" method="post">
+        <select name="idd" class="selectpicker form-control" required>
+        <option value="">None</option>
+        {% for d in names %}
+          <option value="{{ d.id }}">{{ d.name }}</option>
+          <br><br>
+        {% endfor %}
+        </select>
+     <br>
+        <input class="btn btn-default" name="input1" type="submit" value="Delete name">
+        </form>
+              {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+ </body>
+ </html>

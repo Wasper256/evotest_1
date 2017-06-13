@@ -7,8 +7,6 @@
   </head>
   <body>
     <div class="col-sm-12"><h3 class="text-center">Welcome!</h3></div>
-    <div class="col-sm-6"></div>
-    <div class="col-sm-6"><h3 class="text-center"><a href="/positions">Delete name here, if you want</a></h3></div>
     <div class="col-sm-6">
       <h3>Please input new name</h3>
       <br>
@@ -20,12 +18,33 @@
       </form><br>
       </div>
       <div class="col-sm-6">
-        <h3>>>>>>Select lucky names<<<<</h3>
+        <h3>Push to select 3 lucky names<h3>
       <form action="" name="action" method="post" value="action">
       <input class="btn btn-default" type="submit" name="lucky" value="Random!">
       </form><br>
       </div>
       <div class="col-sm-12">
+        <h3>
+          Delete name
+        </h3>
+      </div>
+      <div class="col-sm-6">
+      <h4>
+        select name
+      </h4>
+      <form action="" method="post">
+        <select name="id" class="selectpicker form-control" required>
+        <option value="">None</option>
+        {% for d in names %}
+            <option value="{{ d.id }}">{{ d.name }}</option>
+            <br><br>
+        {% endfor %}
+        </select>
+     <br>
+        <input class="btn btn-default" name="input_del_name" type="submit" value="Delete name">
+        </form>
+        </div>
+      <div class="col-sm-6">
       <h3>
       {% with messages = get_flashed_messages() %}
         {% if messages %}

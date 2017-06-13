@@ -1,5 +1,5 @@
 """Main app file."""
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, redirect
 from extentions import db
 from random import choice
 
@@ -20,20 +20,30 @@ def home():
             db.session.add(Names(name))
             db.session.commit()
             flash("New name successfully added!")
+            return redirect("", code=302)
         except:  # anticlone department logic
             flash("Error! Name already exists!")
     elif request.method == 'POST' and "lucky" in request.form:
-        win = []
-        while len(win) < 3:
-            n = choice(names).name
-            if n in win:
-                print"1"
-                pass
-            else:
-                n = n.encode("utf-8")
-                win.append(n)
-        flash("Winners is: {0}, {1}, {2}.".format(win[0], win[1], win[2]))
-    return render_template('index.html')
+        if len(names) < 3:
+            flash("Error! Too few names! Add names and try again!")
+        else:
+            win = []
+            while len(win) < 3:
+                n = choice(names).name
+                if n in win:
+                    pass
+                else:
+                    n = n.encode("utf-8")
+                    win.append(n)
+            flash("Winners is: {0}, {1}, {2}.".format(win[0], win[1], win[2]))
+    elif request.method == 'POST' and "input_del_name" in request.form:
+        idn = request.form["id"]
+        Names.query.filter_by(id=idn).delete()
+        db.session.commit()
+        flash("Selected name was deleted")
+        return redirect("", code=302)
+    return render_template('index.html', names=names)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
