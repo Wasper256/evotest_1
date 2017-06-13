@@ -6,31 +6,31 @@
     <link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
   </head>
   <body>
-    <div class="col-sm-12"><h3 class="text-center">Welcome!</h3></div>
+    <div class="col-sm-12"><h1 class="text-center">Welcome!</h1></div>
     <div class="col-sm-6">
       <h3>Please input new name</h3>
       <br>
       <form action="" name="action" method="post" value="name">
         <h4>Input new name(Use only A-Z,a-z):</h4>
-        <input type="text" placeholder="Name" name="name" maxlength="32" pattern="[A-Za-z]{1,32}" value="{{
+        <input type="text" placeholder="e.g. Joe" name="name" maxlength="32" pattern="[A-Za-z]{1,32}" value="{{
         request.form.name }}" required> <br><br>
-      <input class="btn btn-default" type="submit" value="Add new name">
+        <input class="btn btn-default" type="submit" value="Add new name">
       </form><br>
-      </div>
-      <div class="col-sm-6">
-        <h3>Push to select 3 lucky names<h3>
+    </div>
+    <div class="col-sm-6">
+      <h3>Push to select 3 lucky names<h3>
       <form action="" name="action" method="post" value="action">
-      <input class="btn btn-default" type="submit" name="lucky" value="Random!">
+        <input class="btn btn-default" type="submit" name="lucky" value="Select random names!">
       </form><br>
-      </div>
-      <div class="col-sm-12">
-        <h3>
-          Delete name
-        </h3>
-      </div>
-      <div class="col-sm-6">
+    </div>
+    <div class="col-sm-12">
+      <h3>
+        Delete name
+      </h3>
+    </div>
+    <div class="col-sm-6">
       <h4>
-        select name
+        Select which one you want
       </h4>
       <form action="" method="post">
         <select name="id" class="selectpicker form-control" required>
@@ -40,11 +40,11 @@
             <br><br>
         {% endfor %}
         </select>
-     <br>
+        <br>
         <input class="btn btn-default" name="input_del_name" type="submit" value="Delete name">
-        </form>
-        </div>
-      <div class="col-sm-6">
+      </form>
+    </div>
+    <div class="col-sm-6">
       <h3>
       {% with messages = get_flashed_messages() %}
         {% if messages %}

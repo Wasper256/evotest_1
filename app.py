@@ -15,19 +15,20 @@ def home():
     """Loading main page."""
     names = Names.query.all()
     if request.method == 'POST' and "name" in request.form:
-        try:  # simple getting data from forms
+        try:  # add name
             name = request.form['name']
             db.session.add(Names(name))
             db.session.commit()
             flash("New name successfully added!")
             return redirect("", code=302)
-        except:  # anticlone department logic
+        except:  # same name exception handler
+            db.session.rollback()
             flash("Error! Name already exists!")
     elif request.method == 'POST' and "lucky" in request.form:
-        if len(names) < 3:
+        if len(names) < 3:  # random names
             flash("Error! Too few names! Add names and try again!")
         else:
-            win = []
+            win = []  # winners selection
             while len(win) < 3:
                 n = choice(names).name
                 if n in win:
@@ -37,7 +38,7 @@ def home():
                     win.append(n)
             flash("Winners is: {0}, {1}, {2}.".format(win[0], win[1], win[2]))
     elif request.method == 'POST' and "input_del_name" in request.form:
-        idn = request.form["id"]
+        idn = request.form["id"]  # delete name
         Names.query.filter_by(id=idn).delete()
         db.session.commit()
         flash("Selected name was deleted")
@@ -46,4 +47,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
