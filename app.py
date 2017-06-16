@@ -37,9 +37,9 @@ def home():
                     n = n.encode("utf-8")
                     win.append(n)
             flash("Winners is: {0}, {1}, {2}.".format(win[0], win[1], win[2]))
-    elif request.method == 'POST' and "input_del_name" in request.form:
-        idn = request.form["id"]  # delete name
-        Names.query.filter_by(id=idn).delete()
+    elif request.method == 'POST' and "delname" in request.form:
+        idn = request.form["delname"]  # delete name
+        Names.query.filter_by(name=idn).delete()
         db.session.commit()
         flash("Selected name was deleted")
         return redirect("", code=302)

@@ -32,11 +32,11 @@
       <h4>
         Select which one you want
       </h4>
-      <form action="" method="post">
-        <select name="id" class="selectpicker form-control" required>
+      <form action="" name="delname" method="post">
+        <select name="delname" class="selectpicker form-control" required>
         <option value="">None</option>
         {% for d in names %}
-            <option value="{{ d.id }}">{{ d.name }}</option>
+            <option value="{{ d.name }}">{{ d.name }}</option>
             <br><br>
         {% endfor %}
         </select>
